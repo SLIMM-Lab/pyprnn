@@ -23,7 +23,7 @@ Because the models in the architecture are the exact same as in the micromodel, 
 
 ## In this repository
 
-The code in this repository contains a standalone demonstration of PRNNs for a 2D micromodel with $$J_2$$ elastoplasticity (matrix) and linear elasticity (fibers):
+The code in this repository contains a standalone demonstration of PRNNs for a 2D micromodel with $J_2$ elastoplasticity (matrix) and linear elasticity (fibers):
 
 - `J2Tensor.py` and `J2Tensor_vect.py`: a simple $J_2$ plasticity model in plane stress. This code comes directly from an FE package, demonstrating how PRNNs can embed existing material models with little to no changes in code;
 - `prnn.py`: a wrapper class for a PyTorch network that implements the PRNN, with single-layer encoder and decoder. Training is also performed here;
