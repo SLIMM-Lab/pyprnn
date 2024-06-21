@@ -1,6 +1,8 @@
 # Physically Recurrent Neural Networks
 
-<img src="https://github.com/SLIMM-Lab/pyprnn/blob/main/animations/PRNNanalogy.gif" width="75%" height="75%"/>
+<p align="center">
+<img src="https://raw.githubusercontent.com/ibcmrocha/public/main/PRNNanalogy.gif" width="75%" height="75%"/>
+</p>
 
 **Intact** constitutive models embedded in an encoder-decoder MLP architecture.
 
@@ -12,6 +14,10 @@ Because the models in the architecture are the exact same as in the micromodel, 
 - Strain rate dependency while training with only a single rate
 - Consistent step size dependency (independent for inviscid models; correct dependence for viscous models)
 - Between $10\times$ and $100\times$ less training data than RNNs for comparable performance
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/ibcmrocha/public/main/materialPointWithAndWithoutIntVars.gif" width="75%" height="75%"/>
+</p>
 
 ## Journal papers and preprints
 
@@ -27,16 +33,9 @@ Because the models in the architecture are the exact same as in the micromodel, 
 
 The code in this repository contains a standalone demonstration of PRNNs for a 2D micromodel with $J_2$ elastoplasticity (matrix) and linear elasticity (fibers):
 
-- `J2Tensor.py` and `J2Tensor_vect.py`: a simple $J_2$ plasticity model in plane stress. This code comes directly from an FE package, demonstrating how PRNNs can embed existing material models with little to no changes in code;
-- `prnn.py`: a wrapper class for a PyTorch network that implements the PRNN, with single-layer encoder and decoder. Training is also performed here;
-- `prnn_GPcurve_0_6_18.pth`: a PyTorch checkpoint with a pretrained PRNN with two fictitious $J_2$ material points and trained with 18 strain paths coming from suitable Gaussian Processes (non-monotonic and non-proportional paths);
-- `prnn-demo.ipynb`: simple Jupyter notebook with a ready-to-run example to get you started with the code.
-
-## Illustrated concepts
-
-- In the PRNN, the internal variables of the path and/or rate-dependent material models are used as the physics-based memory of the network. Here, we illustrate the concept considering a fictitious material point evaluated by a $J_2$ elastoplastic model (matrix), as well as the case in which the material point is evaluated by a linear elastic model (fibers). Note that for the latter, no internal variables are needed. 
-<img src="https://github.com/SLIMM-Lab/pyprnn/blob/main/animations/materialPointWithAndWithoutIntVars.gif" width="75%" height="75%"/>
-
-- This time, we show how the fictitious material point with strain rate-dependency differs from the previous fictitious material point with only path-dependency. At the end, we also refer to another interesting feature to be explored in future works: the ability of the network to extrapolate to a different set of material properties without the need to retrain.
-<img src="https://github.com/SLIMM-Lab/pyprnn/blob/main/animations/matPointWRateDepAndDifProps.gif" width="50%" height="50%"/>
-
+- `prnn-demo.ipynb`: Jupyter notebook with a few ready-to-run examples. **START HERE!**
+- `J2Tensor_vect.py`: a simple $J_2$ plasticity model in plane stress. This code comes directly from an FE package, demonstrating how PRNNs can embed existing material models with little to no changes in code;
+- `prnn.py`: A PyTorch network class that implements the PRNN, with single-layer encoder and decoder; 
+- `rnn.py`: Implements GRU and LSTM networks with variational Gaussian dropout. For comparing predictions and learning performance with PRNNs;
+- `utils.py`: Implements a custom dataset class for handling stress and strain paths, and a class for training and evaluating networks, with the ability of saving and loading checkpoints;
+- `pyprnn.yml`: Conda environment file that should take care of all dependencies for running the code.
