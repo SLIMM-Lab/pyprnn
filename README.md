@@ -39,3 +39,14 @@ The code in this repository contains a standalone demonstration of PRNNs for a 2
 - `rnn.py`: Implements GRU and LSTM networks with variational Gaussian dropout. For comparing predictions and learning performance with PRNNs;
 - `utils.py`: Implements a custom dataset class for handling stress and strain paths, and a class for training and evaluating networks, with the ability of saving and loading checkpoints;
 - `pyprnn.yml`: Conda environment file that should take care of all dependencies for running the code.
+
+The demonstration notebook also provides three different types of strain path for training, validation and testing:
+
+- A set of 18 **canonical** paths, comprising uniaxial and biaxial combinations of tension/compression and shear. This dataset is made to mimic traditional fitting of constitutive models. PRNNs already perform remarkably well even when trained only on these simple paths;
+- A set of 100 **proportional** paths in random directions in stress space containing a single unloading-reloading cycle;
+- A set of 100 non-proportional **GP** paths, sampled from suitable Gaussian Process priors and designed to be as general as possible.
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/ibcmrocha/public/main/levels.png" width="75%" height="75%"/>
+</p>
+
