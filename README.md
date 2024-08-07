@@ -1,7 +1,7 @@
 # Physically Recurrent Neural Networks
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/ibcmrocha/public/main/PRNNanalogy.gif" width="75%" height="75%"/>
+<img src="https://raw.githubusercontent.com/MarinaMaia2021/supportMaterial/main/multiscaleWithPRNN.gif" width="75%" height="75%"/>
 </p>
 
 **Intact** constitutive models embedded in an encoder-decoder MLP architecture.
@@ -16,7 +16,7 @@ Because the models in the architecture are the exact same as in the micromodel, 
 - Between $10\times$ and $100\times$ less training data than RNNs for comparable performance
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/MarinaMaia2021/supportMaterial/main/multiscaleWithPRNN.gif" width="75%" height="75%"/>
+<img src="https://raw.githubusercontent.com/ibcmrocha/public/main/materialPointWithAndWithoutIntVars.gif" width="75%" height="75%"/>
 </p>
 
 ## Journal papers and preprints
