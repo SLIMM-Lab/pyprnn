@@ -16,7 +16,7 @@ Because the models in the architecture are the exact same as in the micromodel, 
 - Between $10\times$ and $100\times$ less training data than RNNs for comparable performance
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/MarinaMaia2021/supportMaterial/main/matPoint_2d_paper1" width="75%" height="75%"/>
+<img src="https://raw.githubusercontent.com/MarinaMaia2021/supportMaterial/main/matPoint_2d_paper1.gif" width="75%" height="75%"/>
 </p>
 
 ## Journal papers and preprints
