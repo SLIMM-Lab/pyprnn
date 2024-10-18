@@ -12,7 +12,7 @@ Because the models in the architecture are the exact same as in the micromodel, 
 
 - Path dependency (loading/unloading/reloading) without training for it
 - Strain rate dependency while training with only a single rate
-- Consistent step size dependency (independent for inviscid models; correct dependence for viscous models)
+- Consistent step size dependence (independent for inviscid models; correct dependence for viscous models)
 - Between $10\times$ and $100\times$ less training data than RNNs for comparable performance
 
 <p align="center">
@@ -23,11 +23,11 @@ Because the models in the architecture are the exact same as in the micromodel, 
 
 - MA Maia, IBCM Rocha, P Kerfriden, FP van der Meer (2023), [PRNNs for 2D composites, elastoplastic](https://www.sciencedirect.com/science/article/pii/S0045782523000579)
 
-- MA Maia, IBCM Rocha, FP van der Meer (2024), [PRNNs for 3D composites, finite-strain thermoviscoelasticity, creep and fatigue](https://arxiv.org/abs/2404.17583)
+- MA Maia, IBCM Rocha, FP van der Meer (2024), [PRNNs for 3D composites, finite-strain thermoviscoplasticity, creep and fatigue](https://www.sciencedirect.com/science/article/pii/S0167663624002370)
+
+- N Kovacs, MA Maia, IBCM Rocha, C Furtado, PP Camanho, FP van der Meer (2024), [PRNNs for micromodels including distributed cohesive damage](https://arxiv.org/abs/2410.13774)
 
 - MA Maia, IBCM Rocha, D Kovacevic, FP van der Meer (2024), Reproducing creep and fatigue experiments in thermoplastics using PRNNs -- **COMING SOON**
-
-- N Kovacs, MA Maia, IBCM Rocha, C Furtado, PP Camanho, FP van der Meer (2024), PRNNs for micromodels including distributed cohesive damage -- **COMING SOON**
 
 ## In this repository
 
