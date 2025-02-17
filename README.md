@@ -19,6 +19,10 @@ Because the models in the architecture are the exact same as in the micromodel, 
 <img src="https://raw.githubusercontent.com/MarinaMaia2021/supportMaterial/main/matPoint_2d_paper1.gif" width="75%" height="75%"/>
 </p>
 
+## **NEW**: Try it out on Google Colab
+
+You can quickly try out our [demo notebook](https://colab.research.google.com/drive/1LmBUjF0ZrEm3ur1Bt8_XUgoLtQHdU4lM?usp=sharing) directly in Google Colab.
+
 ## Journal papers and preprints
 
 - MA Maia, IBCM Rocha, P Kerfriden, FP van der Meer (2023), [PRNNs for 2D composites, elastoplastic](https://www.sciencedirect.com/science/article/pii/S0045782523000579)
