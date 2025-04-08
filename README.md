@@ -31,7 +31,7 @@ You can quickly try out our [demo notebook](https://colab.research.google.com/dr
 
 - N Kovacs, MA Maia, IBCM Rocha, C Furtado, PP Camanho, FP van der Meer (2024), [PRNNs for micromodels including distributed cohesive damage](https://arxiv.org/abs/2410.13774)
 
-- MA Maia, IBCM Rocha, D Kovacevic, FP van der Meer (2024), Reproducing creep and fatigue experiments in thermoplastics using PRNNs -- **COMING SOON**
+- MA Maia, IBCM Rocha, D Kovacevic, FP van der Meer (2025), [Reproducing creep and fatigue experiments in thermoplastics using PRNNs](https://arxiv.org/abs/2501.10193)
 
 ## In this repository
 
