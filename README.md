@@ -19,9 +19,11 @@ Because the models in the architecture are the exact same as in the micromodel, 
 <img src="https://raw.githubusercontent.com/MarinaMaia2021/supportMaterial/main/matPoint_2d_paper1.gif" width="75%" height="75%"/>
 </p>
 
-## **NEW**: Try it out on Google Colab
+## **NEW**: Related code
 
-You can quickly try out our [demo notebook](https://colab.research.google.com/drive/1LmBUjF0ZrEm3ur1Bt8_XUgoLtQHdU4lM?usp=sharing) directly in Google Colab.
+- You can quickly try out our [demo notebook](https://colab.research.google.com/drive/1LmBUjF0ZrEm3ur1Bt8_XUgoLtQHdU4lM?usp=sharing) directly in Google Colab.
+
+- For >10x faster training and inference times, try this [JAX-based PRNN implementation](https://github.com/SLIMM-Lab/jax-prnn). 
 
 ## Journal papers and preprints
 
