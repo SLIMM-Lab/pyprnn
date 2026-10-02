@@ -211,7 +211,29 @@ class PlotNN ( ):
    
     # Main plotting function
     def plot_curves(self, hf, nn, curve_id = 0): 
-      
+        
+      # Remove previous curves
+      if self.shown:
+        for j in range(self.dim):
+
+            # Remove previous Micro/reference line
+            for line in self.plot_micro:
+                try:
+                    line.remove()
+                except ValueError:
+                    pass
+
+            # Remove previous NN lines
+            for line in self.plot_prnn:
+                try:
+                    line.remove()
+                except ValueError:
+                    pass
+
+        self.plot_prnn = []
+        self.plot_micro = [self.axs[0].plot([], []), self.axs[1].plot([], []), 
+                           self.axs[2].plot([], [])]        
+              
       # Use latex to render labels
       hfont = {'fontname':'serif', 'fontsize':13}
         
@@ -236,19 +258,20 @@ class PlotNN ( ):
       for j in range(self.dim):          
         maxYnn = -1e6
         minYnn = 1e6
-        
-        # Remove old lines
-        if ( self.shown == True ): 
-            for line in self.axs[j].lines:
-                line.remove()
 
+        if j == 0:
+            label_mask_micro = "Micro"
+        else:
+            label_mask_micro = "_no_legend"
+        
         # Plot high fidelity data
         self.plot_micro[j], = self.axs[j].plot(hfstrain[:,j], hfstress[:,j], 
                                                color = self.c11, 
                                                linewidth = 2.5, 
-                                               label= "Micro", 
+                                               label= label_mask_micro, 
                                                linestyle = "dotted", 
-                                               zorder = 1)           
+                                               zorder = 1)   
+        plot_prnn.append(self.plot_micro[j])        
        
         # Plot nn predictions
         for netIdx in range (self.nModels):
@@ -256,16 +279,21 @@ class PlotNN ( ):
             nnstress = nn[netIdx, :, 3:6]
             
             maxYnn = max(max(nnstress[:,j]), maxYnn)
-            minYnn = min(min(nnstress[:,j]), minYnn)
+            minYnn = min(min(nnstress[:,j]), minYnn)           
+
+            if j == 0:
+                label_mask = self.labels[netIdx]
+            else:
+                label_mask = "_no_legend"
             
             aux, = self.axs[j].plot(nnstrain[:, j], nnstress[:, j], 
                                     linewidth = 1.5, color = self.palette[netIdx],
-                                label = self.labels[netIdx], linestyle = "solid")
+                                label = label_mask, linestyle = "solid")
             plot_prnn.append(aux)
         
         # At the end of the loop through components and nns, save all 
         # plotted lines (they should be removed when a new curve is shown next)
-        if ( j == self.dim - 1 ): self.plot_prnn = plot_prnn
+        if ( j == self.dim - 1 and netIdx == self.nModels - 1): self.plot_prnn = plot_prnn
                     
         # Getting upper and lower bounds of the current curve
         maxY = max(maxYnn, max(hfstress[:,j]))
@@ -291,8 +319,9 @@ class PlotNN ( ):
                                 width=.7, direction='in', labelsize = 14)
         self.axs[j].tick_params(which='minor', length=3, color='lightgrey', 
                                 width=.7, direction='in', labelsize = 14)
-        if (j == 0):  
-            self.axs[j].legend(loc=(1.04,0),  
+        if (j == 0):
+            h, l = self.axs[j].get_legend_handles_labels()
+            self.axs[j].legend(handles = h, labels = l, loc=(1.04,0),  
                                frameon=False, prop={'size': 12.0})    
           
       # Set spacing between subplots      
