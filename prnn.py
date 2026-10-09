@@ -103,6 +103,64 @@ class PRNN(torch.nn.Module):
 
         output = out.to(self.device)
         return output
+    
+    def getLatent(self,x):
+        batch_size, seq_len, _ = x.size()
+    
+        output =  x.clone()
+        out = torch.zeros(
+                [batch_size,seq_len, self.n_outputs]).to(self.device)
+    
+        inputtCombined = torch.zeros([seq_len, self.mat_pts*self.n_features])
+        outputtCombined = torch.zeros([seq_len, self.mat_pts*self.n_features])
+        histCombined = torch.zeros([seq_len, self.mat_pts*self.n_features])
+        histEqCombined = torch.zeros([seq_len, self.mat_pts])
+    
+        # Create bulk and cohesive models and fictitious integration points
+    
+        bulk_model = J2Material(self.device)
+    
+        ip_pointsb = batch_size*self.mat_pts
+    
+        bulk_model.configure(ip_pointsb)
+    
+        # Process (batched) strain paths one time step at a time
+    
+        for t in range(seq_len):
+          # Encoder (localization)
+    
+          outputt = self.fc1(output[:, t,:])
+    
+          # Run bulk model (strain, oldstate -> stress, newstate) 
+    
+          local_strains = outputt[:, 0:self.n_latents]
+          inputtCombined[t, :] = local_strains.view(-1).clone()
+      #    if t == 0: print(local_strains)
+          outputt[:, 0:self.n_latents] = bulk_model.update(
+              local_strains.reshape(ip_pointsb,self.n_features)).reshape(batch_size, self.n_latents)
+    
+          # To get seperate values for sigx sigy sigxy in material model
+          outputtCombined[t, :] = outputt.view(-1)
+    
+          # Store updated material history
+    
+          bulk_model.commit()
+    
+          # Get plastic strain
+    
+          histEqCombined[t, :] = bulk_model.getEpeq().view(-1).clone()
+          histCombined[t, :] = bulk_model.getHistory().view(-1).clone()
+    
+          # Decoder (homogenization)
+    
+          outputt = self.fc2(outputt.view(batch_size, self.n_latents))
+        #  outputt, outputtCombined[t, :]  = self.fc2.getLatent(outputt.view(batch_size, self.n_latents))
+    
+          out[:, t, :] = outputt.view(-1,self.n_outputs)
+    
+        output = out.to(self.device)
+    
+        return output, inputtCombined, outputtCombined, histEqCombined, histCombined
 
 
 class SoftLayer(torch.nn.Module): 

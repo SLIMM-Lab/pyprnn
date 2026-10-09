@@ -100,9 +100,11 @@ class J2Material:
 
         return sig[:, :, 0]
 
+    def getEpeq (self):
+        return self.epspeq_hist
 
     def getHistory (self):
-        return self.new_epspeq_hist
+        return self.epsp_hist
     
     def commit ( self ):
         self.epsp_hist = self.new_epsp_hist

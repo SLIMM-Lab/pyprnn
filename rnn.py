@@ -64,6 +64,26 @@ class LSTM(torch.nn.Module):
 
         return output
 
+    def getLatent(self,x):
+        batch_size = x.shape[0]
+
+        h0 = torch.zeros(self.n_layers,
+                         batch_size,
+                         self.n_latents,
+                         requires_grad=True)
+        c0 = torch.zeros(self.n_layers,
+                         batch_size,
+                         self.n_latents,
+                         requires_grad=True)
+
+        output, hn, cn = self.lstm(x, (h0,c0))
+
+        if self.dropout:
+            output = self.dropout(output)
+
+        output = self.linear(output)
+
+        return output, hn, cn
 
 class GRU(torch.nn.Module):
     def __init__(self, n_features, n_outputs, n_latents, dropout=False):
@@ -102,13 +122,30 @@ class GRU(torch.nn.Module):
                          requires_grad=True)
 
         output, hn = self.gru(x, h0)
-
+        
         if self.dropout:
             output = self.dropout(output)
 
         output = self.linear(output)
 
         return output
+        
+    def getLatent(self,x):
+        batch_size = x.shape[0]
+
+        h0 = torch.zeros(self.n_layers,
+                         batch_size,
+                         self.n_latents,
+                         requires_grad=True)
+
+        output, hn = self.gru(x, h0)
+        
+        if self.dropout:
+            output = self.dropout(output)
+
+        lin_output = self.linear(output)
+
+        return lin_output, output
 
 class GaussianDropout(torch.nn.Module):
     def __init__(self):
