@@ -170,7 +170,7 @@ class PlotNN ( ):
             self.ylabels = [r'$\sigma_{xx}$ [MPa]', r'$\sigma_{yy}$ [MPa]', r'$\sigma_{xy}$ [MPa]']    
         else:
             self.xlabels = [r'Time step [-]']
-            self.ylabels = [r'$\varepsilon_{\textrm{eq}}^{\textrm{p}}$ [-]']
+            self.ylabels = [r'$\varepsilon_{eq}^{p}$ [-]']
                     
         self.plot_prnn = []
         self.plot_highlight = []        
