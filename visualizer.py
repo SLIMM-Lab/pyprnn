@@ -269,8 +269,8 @@ class PlotNN ( ):
       
       # Use latex to render labels
       hfont = {'fontname':'serif', 'fontsize':13}
-      plt.rcParams['text.usetex'] = True
-      plt.rc('text.latex', preamble = r"\usepackage{amsmath} \usepackage{amssymb}")   
+    #  plt.rcParams['text.usetex'] = True
+    #  plt.rc('text.latex', preamble = r"\usepackage{amsmath} \usepackage{amssymb}")   
       
       # Checking lower and upper bounds of specified curve idx
       # if not within right bounds pick random curve
@@ -402,8 +402,8 @@ class PlotNN ( ):
     def plot_history_gru(self, hidden_histories, hf, nn, curve_id=0):
         # Use latex to render labels
         hfont = {'fontname':'serif', 'fontsize':13}
-        plt.rcParams['text.usetex'] = True
-        plt.rc('text.latex', preamble = r"\usepackage{amsmath} \usepackage{amssymb}")   
+      #  plt.rcParams['text.usetex'] = True
+      #  plt.rc('text.latex', preamble = r"\usepackage{amsmath} \usepackage{amssymb}")   
         
         if curve_id < 0 or curve_id >= self.nlc:   
             curve_id = np.random.randint(0, self.nlc)   
